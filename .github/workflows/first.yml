@@ -13,15 +13,15 @@ jobs:
     #----------------------------------------------#
     strategy:
       matrix:
-         Platform: ["ubuntu","macos","windows"]
+         Platform: ["ubuntu-latest","macos-latest","windows-latest"]
          Version: ["3.10","3.9","3.8","3.7"]
-    runs-on: ${{matrix.Platform}}-${{matrix.Version}}
+    runs-on: ${{matrix.Platform}}
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.10
+    - name: Set up Python ${{matrix.Version}}
       uses: actions/setup-python@v2
       with:
-        python-version: "3.10"
+        python-version: ${{matrix.Version}}
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
